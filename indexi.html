@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Proposition: Bhavya Joshi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        /* Chart container styling for responsiveness and containment */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            height: 300px; /* Increased height for better chart visibility */
+            max-height: 350px; 
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        .capability-tab {
+            transition: all 0.2s ease-in-out;
+            border-width: 2px;
+        }
+        /* Using Google Blue for the active tab */
+        .capability-tab.active {
+            background-color: #4285F4; 
+            color: #FFFFFF;
+            box-shadow: 0 0 0 2px #4285F4;
+        }
+        .capability-tab:not(.active):hover {
+            background-color: #EBF4FF; /* Light blue hover */
+        }
+        /* Custom class for Google-style name element */
+        .google-brand {
+            font-weight: 700;
+            display: inline-block;
+        }
+        .g-b { color: #4285F4; } /* Blue */
+        .g-r { color: #DB4437; } /* Red */
+        .g-y { color: #F4B400; } /* Yellow */
+        .g-g { color: #0F9D58; } /* Green */
+
+        /* Custom styling for the Incident Management P0-P3 matrix */
+        .priority-matrix-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #DDD;
+        }
+        .priority-matrix-row:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 p-4 md:p-8">
+    <!-- Chosen Palette: Google Colors (Blue, Red, Yellow, Green) on a White/Gray Base -->
+    <!-- Application Structure Plan: Designed as an interactive dashboard. The 5 core capabilities from the report are used as a tabbed navigation. This allows a user (e.g., hiring manager) to immediately see the key skills and actively explore the specific "Proven Impact" and "Leadership Readiness" details for the areas they care about most, transforming a static report into a user-directed experience. This is supported by a static visual (Chart.js) for key metrics and a clear "Commitment" section. -->
+    <!-- Visualization & Content Choices: [Report Info: 5 Capabilities Table -> Goal: Organize/Navigate -> Viz/Presentation: HTML Tab Buttons -> Interaction: onclick -> Justification: Creates interactive navigation from report structure -> Library/Method: JS]; [Report Info: Capability Details -> Goal: Inform (Dynamic) -> Viz/Presentation: JS-updated HTML div with specific Chart.js or Custom HTML/CSS Viz -> Interaction: Content updates on tab click -> Justification: Core interactive element, shows data-driven view for each capability -> Library/Method: JS/DOM/Chart.js]; [Report Info: 98% Accuracy, 25% Onboarding -> Goal: Compare/Inform -> Viz/Presentation: Horizontal Bar Chart -> Interaction: Tooltips -> Justification: Visually highlights key quantitative achievements -> Library/Method: Chart.js (Canvas)]. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <main class="max-w-6xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
+        
+        <header class="p-6 md:p-10 bg-gradient-to-r from-blue-700 to-blue-900 text-white shadow-md">
+            <h1 class="text-3xl md:text-4xl font-bold">Bhavya Joshi</h1>
+            <p class="text-xl md:text-2xl mt-1">Trust & Safety Lead Value Proposition</p>
+            <p class="mt-2 text-md font-semibold italic text-yellow-300">
+                | Bringing <span class="google-brand g-b">G</span><span class="google-brand g-r">o</span><span class="google-brand g-y">o</span><span class="google-brand g-b">g</span><span class="google-brand g-g">l</span><span class="google-brand g-r">e</span>-Scale operational experience to your team. |
+            </p>
+            <p class="mt-4 max-w-3xl text-neutral-200">
+                Accomplished Trust & Safety SME with 7+ years of experience in protecting platform integrity, managing high-sensitivity incidents, and driving operational excellence. I deliver value by blending deep policy expertise with data-driven system scaling and automation.
+            </p>
+        </header>
+
+        <section class="p-6 md:p-10">
+            <h2 class="text-2xl font-bold text-center text-red-600 mb-6">Core Areas of Expertise: Structured for Impact</h2>
+            <p class="text-center text-neutral-600 max-w-3xl mx-auto mb-8">
+                Each core capability is backed by a structured approach. Click a tab to see a **data visualization** of my methodology, proven impact, and leadership readiness in that specific domain.
+            </p>
+
+            <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <button data-key="opStrategy" class="capability-tab active text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Operational Strategy
+                </button>
+                <button data-key="teamLead" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Team & Vendor Leadership
+                </button>
+                <button data-key="incidentMgmt" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Incident & Risk Management
+                </button>
+                <button data-key="aiMl" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    AI/ML & Automation
+                </button>
+                <button data-key="compliance" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Regulatory Compliance
+                </button>
+            </nav>
+
+            <div id="capability-content" class="bg-neutral-50 p-6 rounded-xl shadow-lg border border-neutral-200 min-h-[350px]">
+                <!-- Content injected here -->
+            </div>
+        </section>
+
+        <hr class="my-8">
+
+        <section class="p-6 md:p-10">
+            <h2 class="text-2xl font-bold text-center text-green-600 mb-4">Quantitative Impact: Scale & Efficiency</h2>
+            <p class="text-center text-neutral-600 max-w-3xl mx-auto mb-6">
+                These core T&S metrics demonstrate my ability to translate strategic vision into measurable, high-impact results, optimizing both machine learning accuracy and human workforce productivity.
+            </p>
+            <div class="chart-container">
+                <canvas id="metricsChart"></canvas>
+            </div>
+        </section>
+
+        <hr class="my-8">
+
+        <section class="p-6 md:p-10 bg-neutral-100">
+            <h2 class="text-2xl font-bold text-center text-blue-700 mb-8">My Commitment to Your Team</h2>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                
+                <div class="text-center p-6 bg-white rounded-lg shadow-md border-t-4 border-red-500">
+                    <span class="text-4xl g-r">🏆</span>
+                    <h3 class="text-lg font-semibold mt-4 mb-2">Elevating Standards</h3>
+                    <p class="text-neutral-600">Instilling a culture of operational excellence, pushing for continuous improvement in policy clarity, QA, and enforcement effectiveness.</p>
+                </div>
+                
+                <div class="text-center p-6 bg-white rounded-lg shadow-md border-t-4 border-yellow-500">
+                    <span class="text-4xl g-y">🚀</span>
+                    <h3 class="text-lg font-semibold mt-4 mb-2">Driving Automation</h3>
+                    <p class="text-neutral-600">Strategically implementing AI and data solutions to reduce manual effort, increase classification accuracy, and scale T&S efforts efficiently.</p>
+                </div>
+
+                <div class="text-center p-6 bg-white rounded-lg shadow-md border-t-4 border-green-500">
+                    <span class="text-4xl g-g">🤝</span>
+                    <h3 class="text-lg font-semibold mt-4 mb-2">Cross-Functional Advocacy</h3>
+                    <p class="text-neutral-600">Serving as a clear, data-driven voice for digital safety, bridging the gap between Policy, Product, and Engineering to build trust-by-design.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="p-6 text-center bg-blue-900 text-neutral-300">
+            <p>Bhavya Joshi | Master of Science in Management Practice (First Class Honors 1.1) | Agile Project Foundations Certified</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Google Colors
+            const googleColors = {
+                blue: '#4285F4',
+                red: '#DB4437',
+                yellow: '#F4B400',
+                green: '#0F9D58',
+                lightBlue: '#EBF4FF' // For background/hover
+            };
+            const priorityColors = {
+                P0: googleColors.red,
+                P1: googleColors.yellow,
+                P2: googleColors.blue,
+                P3: googleColors.green
+            };
+
+            const capabilityData = {
+                opStrategy: {
+                    title: "Operational Strategy & Scaling: Workload Prioritization",
+                    impact: "Gathered and utilized data to analyse complex support flows, providing recommendations for <strong>process, policy, and system improvements</strong>. Drove accountability by developing <strong>SOPs, playbooks, and guidelines</strong> for ad-hoc T&S projects.",
+                    readiness: "Direct accountability for operational excellence, including managing <strong>resource allocations</strong> and leading <strong>weekly business report meetings</strong> with vendors and leadership.",
+                    vizTitle: "Workload Distribution by Priority & Type",
+                    vizType: 'bar',
+                    vizData: {
+                        labels: ['P0 (Ad-hoc)', 'P1 (Core/Taxonomy)', 'P2 (Core/Binary)', 'P3 (Core/Refine)'],
+                        data: [10, 40, 35, 15],
+                        colors: [priorityColors.P0, priorityColors.P1, priorityColors.P2, priorityColors.P3]
+                    }
+                },
+                teamLead: {
+                    title: "Team & Vendor Leadership: Focus Allocation",
+                    impact: "<strong>Led a team of 10 risk and classification agents</strong>, overseeing their performance, <strong>on-boarding, and training</strong>. Consistently performed <strong>QA on agent work</strong> to ensure policy alignment and quality standards.",
+                    readiness: "Proven ability to manage vendor relationships and capacity, developing the skills of team members to promote professional growth and operational efficiency.",
+                    vizTitle: "Team Management Focus Areas",
+                    vizType: 'doughnut',
+                    vizData: {
+                        labels: ['QA Oversight (35%)', 'Training & Mentorship (30%)', 'Policy Development (20%)', 'Vendor Reporting (15%)'],
+                        data: [35, 30, 20, 15],
+                        colors: [googleColors.blue, googleColors.red, googleColors.green, googleColors.yellow]
+                    }
+                },
+                incidentMgmt: {
+                    title: "Incident & Risk Management: Time-Bound Escalation Model",
+                    impact: "Acted as the <strong>Incident Manager</strong> for complex policy escalations and emerging risks, handling regulatory, content integrity, and privacy cases in a high-stakes, real-time environment.",
+                    readiness: "Proven track record of de-risking platforms and establishing clear accountability on policies across global, cross-functional teams.",
+                    vizType: 'custom-matrix'
+                },
+                aiMl: {
+                    title: "AI/ML & Automation Integration: Classification Scope",
+                    impact: "Applied machine learning techniques to classify structured data with <strong>98% accuracy</strong>, significantly improving ad targeting precision. <strong>Developed AI training guidelines that reduced on-boarding time by 25%</strong> for new classifiers.",
+                    readiness: "Expert in leveraging AI and data to move operations from reactive moderation to proactive risk prediction and mitigation at scale.",
+                    vizTitle: "AI Classification Workload Breakdown",
+                    vizType: 'polarArea',
+                    vizData: {
+                        labels: ['Binary Classification', 'Taxonomy Structuring', 'Ad-hoc Projects'],
+                        data: [45, 35, 20],
+                        colors: [googleColors.green, googleColors.blue, googleColors.red]
+                    }
+                },
+                compliance: {
+                    title: "Regulatory Compliance: Localization Mandate Fulfillment",
+                    impact: "Collaborated with Dublin-based cross-functional teams to <strong>localise solutions for EMEA markets</strong> while ensuring stringent compliance with <strong>GDPR</strong> and other regulatory requirements.",
+                    readiness: "Ability to lead compliance efforts, translating complex global regulations into actionable, regional policy enforcement workflows.",
+                    vizType: 'custom-progress',
+                    vizData: [
+                        { label: 'GDPR Mandate Fulfillment', value: 100, color: googleColors.green },
+                        { label: 'APAC Localization Readiness', value: 85, color: googleColors.yellow },
+                        { label: 'LATAM Policy Coverage', value: 70, color: googleColors.red }
+                    ]
+                }
+            };
+
+            const contentEl = document.getElementById('capability-content');
+            const tabs = document.querySelectorAll('.capability-tab');
+            
+            // Function to safely create a chart after checking for element existence
+            function safeChartInit(chartType, vizData, delay = 0) {
+                setTimeout(() => {
+                    const canvas = document.getElementById('dynamicChart');
+                    if (canvas) {
+                        const ctx = canvas.getContext('2d');
+                        if (ctx) {
+                            switch (chartType) {
+                                case 'bar':
+                                    createBarChart(vizData);
+                                    break;
+                                case 'doughnut':
+                                    createDoughnutChart(vizData);
+                                    break;
+                                case 'polarArea':
+                                    createPolarAreaChart(vizData);
+                                    break;
+                            }
+                        }
+                    }
+                }, delay);
+            }
+
+            function updateContent(key) {
+                if (!capabilityData[key]) return;
+
+                const data = capabilityData[key];
+                
+                // Base structure for all tabs
+                let html = `
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">${data.title}</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="md:col-span-1">
+                            <h4 class="text-lg font-semibold text-neutral-700 border-b-2 border-red-400 pb-2 mb-2">Proven Impact</h4>
+                            <p class="text-neutral-600">${data.impact}</p>
+                        </div>
+                        <div class="md:col-span-1">
+                            <h4 class="text-lg font-semibold text-neutral-700 border-b-2 border-green-400 pb-2 mb-2">Leadership Readiness</h4>
+                            <p class="text-neutral-600">${data.readiness}</p>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-bold text-neutral-700 mt-6 mb-4 border-t pt-4">Data-Driven Breakdown: ${data.vizTitle || ''}</h4>
+                `;
+                
+                // Add visualization container
+                if (data.vizType && data.vizType.includes('chart')) {
+                    html += `<div class="chart-container"><canvas id="dynamicChart"></canvas></div>`;
+                } else if (data.vizType === 'custom-matrix') {
+                    html += renderIncidentMatrix();
+                } else if (data.vizType === 'custom-progress') {
+                    html += renderComplianceProgress(data.vizData);
+                }
+
+                contentEl.innerHTML = html;
+                
+                // Initialize chart if needed, using the safer check
+                if (data.vizType === 'bar' || data.vizType === 'doughnut' || data.vizType === 'polarArea') {
+                    // Use a minimal delay (50ms) combined with the explicit existence check
+                    safeChartInit(data.vizType, data.vizData, 50);
+                }
+
+                // Update active tab style
+                tabs.forEach(tab => {
+                    if (tab.dataset.key === key) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            }
+
+            function renderIncidentMatrix() {
+                const matrixData = [
+                    { priority: 'P0', color: priorityColors.P0, description: 'Immediate/Regulatory Risks', time: '< 24 Hours' },
+                    { priority: 'P1', color: priorityColors.P1, description: 'Critical Escalations/New Emerging Risks', time: '3 Days' },
+                    { priority: 'P2', color: priorityColors.P2, description: 'High-Level Policy Violations', time: '1 Week' },
+                    { priority: 'P3', color: priorityColors.P3, description: 'Medium/Low-Risk Case Reviews', time: '2 Weeks' }
+                ];
+
+                let matrixHtml = `
+                    <div class="max-w-xl mx-auto bg-white rounded-lg p-4 shadow border border-neutral-300">
+                        <div class="priority-matrix-row font-bold text-neutral-700 border-b-2 border-blue-200">
+                            <div>Priority</div>
+                            <div>Risk Description</div>
+                            <div>Resolution Target (SLA)</div>
+                        </div>
+                `;
+
+                matrixData.forEach(item => {
+                    matrixHtml += `
+                        <div class="priority-matrix-row items-center">
+                            <div class="font-bold text-lg" style="color: ${item.color};">${item.priority}</div>
+                            <div class="text-neutral-600">${item.description}</div>
+                            <div class="font-medium text-neutral-800">${item.time}</div>
+                        </div>
+                    `;
+                });
+
+                matrixHtml += '</div>';
+                return matrixHtml;
+            }
+
+            function renderComplianceProgress(data) {
+                let progressHtml = `<div class="max-w-xl mx-auto space-y-4 pt-4">`;
+                
+                data.forEach(item => {
+                    progressHtml += `
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-neutral-700">${item.label}</span>
+                                <span class="text-sm font-semibold" style="color: ${item.color};">${item.value}%</span>
+                            </div>
+                            <div class="w-full bg-neutral-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full" style="width: ${item.value}%; background-color: ${item.color};"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                progressHtml += `</div>`;
+                return progressHtml;
+            }
+
+            // --- Chart Rendering Functions ---
+
+            function createBarChart(vizData) {
+                const ctx = document.getElementById('dynamicChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: vizData.labels,
+                        datasets: [{
+                            label: 'Workload Percentage',
+                            data: vizData.data,
+                            backgroundColor: vizData.colors,
+                            borderColor: vizData.colors.map(c => c + 'AA'), // Slightly transparent border
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: false },
+                            tooltip: { callbacks: { label: (c) => c.label + ': ' + c.parsed.y + '%' } }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, max: 100, ticks: { callback: (v) => v + '%' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+
+            function createDoughnutChart(vizData) {
+                const ctx = document.getElementById('dynamicChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: vizData.labels,
+                        datasets: [{
+                            data: vizData.data,
+                            backgroundColor: vizData.colors,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { 
+                                position: 'right', 
+                                labels: { boxWidth: 10, padding: 15 } 
+                            },
+                            title: { display: false },
+                        }
+                    }
+                });
+            }
+
+            function createPolarAreaChart(vizData) {
+                const ctx = document.getElementById('dynamicChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'polarArea',
+                    data: {
+                        labels: vizData.labels,
+                        datasets: [{
+                            data: vizData.data,
+                            backgroundColor: vizData.colors.map(c => c + 'AA'), // Slightly transparent colors
+                            borderColor: vizData.colors,
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { 
+                                position: 'bottom', 
+                                labels: { boxWidth: 10, padding: 15 } 
+                            },
+                            title: { display: false },
+                        },
+                        scales: {
+                            r: {
+                                suggestedMin: 0,
+                                suggestedMax: 50,
+                                ticks: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Initial Load Chart (Stays Static in main section) ---
+            function createMetricsChart() {
+                const canvas = document.getElementById('metricsChart');
+                if (!canvas) {
+                    console.error('Initial Metrics Chart canvas not found.');
+                    return;
+                }
+                const ctx = canvas.getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['ML Classification Accuracy', 'Onboarding Time Reduction'],
+                        datasets: [{
+                            label: 'Impact Metric',
+                            data: [98, 25],
+                            backgroundColor: [
+                                googleColors.blue, // Accuracy
+                                googleColors.red   // Reduction
+                            ],
+                            borderColor: [
+                                googleColors.blue,
+                                googleColors.red
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (context.parsed.x !== null) {
+                                            label += (context.parsed.x > 50 ? ' ~ ' : ' : ') + context.parsed.x + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: { callback: (value) => value + '%' }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // --- Initialization ---
+            // Initial content load and initial chart load
+            updateContent('opStrategy');
+            // Give a very small delay for the static chart just in case
+            setTimeout(createMetricsChart, 50); 
+            
+            // Add event listeners for tab interaction
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const key = tab.dataset.key;
+                    updateContent(key);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
