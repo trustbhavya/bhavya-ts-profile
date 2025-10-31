@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Proposition: Bhavya Joshi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            height: 250px;
+            max-height: 250px;
+        }
+        .capability-tab {
+            transition: all 0.2s ease-in-out;
+        }
+        .capability-tab.active {
+            background-color: #2563EB;
+            color: #FFFFFF;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .capability-tab:not(.active):hover {
+            background-color: #F3F4F6;
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 p-4 md:p-8">
+    <!-- Chosen Palette: Warm Neutral (Neutral/Slate) with Blue Accent -->
+    <!-- Application Structure Plan: Designed as an interactive dashboard. The 5 core capabilities from the report are used as a tabbed navigation. This allows a user (e.g., hiring manager) to immediately see the key skills and actively explore the specific "Proven Impact" and "Leadership Readiness" details for the areas they care about most, transforming a static report into a user-directed experience. This is supported by a static visual (Chart.js) for key metrics and a clear "Commitment" section. -->
+    <!-- Visualization & Content Choices: [Report Info: 5 Capabilities Table -> Goal: Organize/Navigate -> Viz/Presentation: HTML Tab Buttons -> Interaction: onclick -> Justification: Creates interactive navigation from report structure -> Library/Method: JS]; [Report Info: Capability Details -> Goal: Inform (Dynamic) -> Viz/Presentation: JS-updated HTML div -> Interaction: Content updates on tab click -> Justification: Core interactive element, shows details on demand -> Library/Method: JS/DOM]; [Report Info: 98% Accuracy, 25% Onboarding -> Goal: Compare/Inform -> Viz/Presentation: Horizontal Bar Chart -> Interaction: Tooltips -> Justification: Visually highlights key quantitative achievements -> Library/Method: Chart.js (Canvas)]; [Report Info: 3 Commitments -> Goal: Organize -> Viz/Presentation: 3-Col Grid w/ Unicode -> Interaction: None -> Justification: Visually scannable layout -> Library/Method: HTML/Tailwind]. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+
+    <main class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        
+        <header class="p-6 md:p-10 bg-gradient-to-r from-neutral-800 to-neutral-700 text-white">
+            <h1 class="text-3xl md:text-4xl font-bold">Bhavya Joshi</h1>
+            <p class="text-xl md:text-2xl text-blue-300 mt-1">Trust & Safety Lead Value Proposition</p>
+            <p class="mt-4 max-w-3xl text-neutral-200">
+                Accomplished Trust & Safety SME with 6+ years of experience in protecting platform integrity, managing high-sensitivity incidents, and driving operational excellence. I deliver value by blending deep policy expertise with data-driven system scaling and automation.
+            </p>
+        </header>
+
+
+        <section class="p-6 md:p-10">
+            <h2 class="text-2xl font-bold text-center text-blue-800 mb-6">Core Areas of Expertise</h2>
+            <p class="text-center text-neutral-600 max-w-2xl mx-auto mb-8">
+                This dashboard outlines my core capabilities. Click any capability to see the specific "Proven Impact" and "Leadership Readiness" for that area. This transforms the static report into an interactive exploration, allowing you to focus on what matters most to you.
+            </p>
+
+
+            <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <button data-key="opStrategy" class="capability-tab active text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Operational Strategy & Scaling
+                </button>
+                <button data-key="teamLead" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Team & Vendor Leadership
+                </button>
+                <button data-key="incidentMgmt" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Incident & Risk Management
+                </button>
+                <button data-key="aiMl" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    AI/ML & Automation
+                </button>
+                <button data-key="compliance" class="capability-tab text-sm md:text-base font-semibold py-3 px-5 rounded-full border border-neutral-300">
+                    Regulatory Compliance
+                </button>
+            </nav>
+
+
+            <div id="capability-content" class="bg-neutral-50 p-6 rounded-lg shadow-inner min-h-[200px]">
+            </div>
+        </section>
+
+
+        <hr class="my-8">
+
+
+        <section class="p-6 md:p-10">
+            <h2 class="text-2xl font-bold text-center text-blue-800 mb-4">Key Impact Metrics</h2>
+            <p class="text-center text-neutral-600 max-w-2xl mx-auto mb-6">
+                These quantitative metrics, drawn from the "AI/ML & Automation" capability, demonstrate a clear record of driving efficiency and accuracy. The chart is rendered using Chart.js on an HTML canvas, providing an interactive visualization of key data points.
+            </p>
+            <div class="chart-container">
+                <canvas id="metricsChart"></canvas>
+            </div>
+        </section>
+
+
+        <hr class="my-8">
+
+
+        <section class="p-6 md:p-10 bg-neutral-100">
+            <h2 class="text-2xl font-bold text-center text-blue-800 mb-8">My Commitment to Your Team</h2>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                
+                <div class="text-center p-6 bg-white rounded-lg shadow">
+                    <span class="text-4xl">🏆</span>
+                    <h3 class="text-lg font-semibold mt-4 mb-2">Elevating Standards</h3>
+                    <p class="text-neutral-600">Instilling a culture of operational excellence, pushing for continuous improvement in policy clarity, QA, and enforcement effectiveness.</p>
+                </div>
+                
+                <div class="text-center p-6 bg-white rounded-lg shadow">
+                    <span class="text-4xl">🚀</span>
+                    <h3 class="text-lg font-semibold mt-4 mb-2">Driving Automation</h3>
+                    <p class="text-neutral-600">Strategically implementing AI and data solutions to reduce manual effort, increase classification accuracy, and scale T&S efforts efficiently.</p>
+                </div>
+
+
+                <div class="text-center p-6 bg-white rounded-lg shadow">
+                    <span class="text-4xl">🤝</span>
+                    <h3 class="text-lg font-semibold mt-4 mb-2">Cross-Functional Advocacy</h3>
+                    <p class="text-neutral-600">Serving as a clear, data-driven voice for digital safety, bridging the gap between Policy, Product, and Engineering to build trust-by-design.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="p-6 text-center bg-neutral-800 text-neutral-300">
+            <p>Bhavya Joshi | Master of Science in Management Practice (First Class Honors 1.1) | Agile Project Foundations Certified</p>
+        </footer>
+    </main>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+
+            const capabilityData = {
+                opStrategy: {
+                    title: "Operational Strategy & Scaling",
+                    impact: "Gathered and utilized data to analyse complex support flows, providing recommendations for <strong>process, policy, and system improvements</strong>. Drove accountability by developing <strong>SOPs, playbooks, and guidelines</strong> for ad-hoc T&S projects.",
+                    readiness: "Direct accountability for operational excellence, including managing <strong>resource allocations</strong> and leading <strong>weekly business report meetings</strong> with vendors and leadership."
+                },
+                teamLead: {
+                    title: "Team & Vendor Leadership",
+                    impact: "<strong>Led a team of 10 risk and classification agents</strong>, overseeing their performance, <strong>on-boarding, and training</strong>. Consistently performed <strong>QA on agent work</strong> to ensure policy alignment and quality standards.",
+                    readiness: "Proven ability to manage vendor relationships and capacity, developing the skills of team members to promote professional growth and operational efficiency."
+                },
+                incidentMgmt: {
+                    title: "Incident & Risk Management",
+                    impact: "Acted as the <strong>Incident Manager</strong> for complex policy escalations and emerging risks, handling regulatory, content integrity, and privacy cases in a high-stakes, real-time environment.",
+                    readiness: "Proven track record of de-risking platforms and establishing clear accountability on policies across global, cross-functional teams."
+                },
+                aiMl: {
+                    title: "AI/ML & Automation Integration",
+                    impact: "Applied machine learning techniques to classify structured data with <strong>98% accuracy</strong>, significantly improving ad targeting precision. <strong>Developed AI training guidelines that reduced on-boarding time by 25%</strong> for new classifiers.",
+                    readiness: "Expert in leveraging AI and data to move operations from reactive moderation to proactive risk prediction and mitigation at scale."
+                },
+                compliance: {
+                    title: "Regulatory Compliance & Globalisation",
+                    impact: "Collaborated with Dublin-based cross-functional teams to <strong>localise solutions for EMEA markets</strong> while ensuring stringent compliance with <strong>GDPR</strong> and other regulatory requirements.",
+                    readiness: "Ability to lead compliance efforts, translating complex global regulations into actionable, regional policy enforcement workflows."
+                }
+            };
+
+
+            const contentEl = document.getElementById('capability-content');
+            const tabs = document.querySelectorAll('.capability-tab');
+
+
+            function updateContent(key) {
+                if (!capabilityData[key]) return;
+
+
+                const data = capabilityData[key];
+                
+                contentEl.innerHTML = `
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">${data.title}</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-700 border-b-2 border-blue-200 pb-2 mb-2">Proven Impact</h4>
+                            <p class="text-neutral-600">${data.impact}</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-700 border-b-2 border-blue-200 pb-2 mb-2">Leadership Readiness</h4>
+                            <p class="text-neutral-600">${data.readiness}</p>
+                        </div>
+                    </div>
+                `;
+
+
+                tabs.forEach(tab => {
+                    if (tab.dataset.key === key) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            }
+
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    updateContent(tab.dataset.key);
+                });
+            });
+
+
+            function createMetricsChart() {
+                const ctx = document.getElementById('metricsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['ML Classification Accuracy', 'Onboarding Time Reduction'],
+                        datasets: [{
+                            label: 'Impact Metric',
+                            data: [98, 25],
+                            backgroundColor: [
+                                'rgba(37, 99, 235, 0.7)',
+                                'rgba(59, 130, 246, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(37, 99, 235, 1)',
+                                'rgba(59, 130, 246, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.x !== null) {
+                                            label += context.parsed.x + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            updateContent('opStrategy');
+            createMetricsChart();
+        });
+    </script>
+</body>
+</html>
